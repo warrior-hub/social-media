@@ -1,3 +1,3 @@
-const SERVER_URL = "http://localhost:8000";
+const SERVER_URL = "https://social-media-x106.onrender.com";
 
 export default SERVER_URL;
