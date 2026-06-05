@@ -39,6 +39,7 @@ const SignIn = () => {
     );
 
     dispatch(setUserData(res.data.user));
+    localStorage.setItem("token", res.data.token);
     toast.success(res.data.message);
 
     setloading(false);
