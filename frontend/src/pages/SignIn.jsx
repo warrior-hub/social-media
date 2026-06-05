@@ -27,27 +27,36 @@ const SignIn = () => {
   }
 
   async function handleSignIn(e) {
-    e.preventDefault();
-    console.log(formData);
-    try {
-      setloading(true);
-      const res = await axios.post(
-        `${SERVER_URL}/api/auth/signin`,
-        formData,
-      );
+  e.preventDefault();
 
-      dispatch(setUserData(res.data.user));
-      toast.success(res.data.message);
-      localStorage.setItem("token", res.data.token);
-      setloading(false);
-      navigate("/");
-      setformData({ name: "", userName: "", email: "", password: "" });
-    } catch (error) {
-      console.log(error.response?.data);
-      toast.error(error.response?.data.message);
-      setloading(false);
-    }
+  try {
+    setloading(true);
+
+    const res = await axios.post(
+      `${SERVER_URL}/api/auth/signin`,
+      formData,
+      { withCredentials: true }
+    );
+
+    dispatch(setUserData(res.data.user));
+    toast.success(res.data.message);
+
+    setloading(false);
+    navigate("/");
+
+    setformData({
+      name: "",
+      userName: "",
+      email: "",
+      password: ""
+    });
+
+  } catch (error) {
+    console.log(error.response?.data);
+    toast.error(error.response?.data.message);
+    setloading(false);
   }
+}
   return (
     <div className="w-full h-screen bg-gradient-to-b from-black to-gray-900 flex justify-center items-center">
       <div className="w-[90%] lg:max-w-[60%] h-[600px] bg-white rounded-2xl flex overflow-hidden border-2 border-[#1a1f23] ">
