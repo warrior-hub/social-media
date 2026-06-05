@@ -7,7 +7,7 @@ import SERVER_URL from "../config";
 const FollowButton = ({ className = "", targetUserId, children,onFollowChange }) => {
    const {userData} =useSelector((state)=>state.user)
   const isFollowing = (userData?.following || []).some(
-  (user) => user?._id?.toString() === targetUserId
+  (user) => String(user?._id || user) === String(targetUserId)
 );
   const dispatch = useDispatch();
 
