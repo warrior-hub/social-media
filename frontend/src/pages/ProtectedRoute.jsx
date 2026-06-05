@@ -1,15 +1,9 @@
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children }) => {
-  const { userData } = useSelector(state => state.user);
+  const token = localStorage.getItem("token");
 
- 
-  if (userData === undefined) {
-    return null; 
-  }
-
-  if (!userData) {
+  if (!token || token === "undefined" || token === "null") {
     return <Navigate to="/signin" replace />;
   }
 
