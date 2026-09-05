@@ -15,7 +15,7 @@ dotenv.config()
 const port = process.env.PORT || 5000
 
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin:"https://social-media-1-w6b3.onrender.com",
     credentials: true
 }));
 app.use(express.json());
