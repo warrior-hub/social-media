@@ -14,10 +14,16 @@ import { app, server } from "./socket.js";
 dotenv.config()
 const port = process.env.PORT || 5000
 
-app.use(cors({
+app.use(
+  cors({
     origin: "https://social-media-1-w6b3.onrender.com",
-    credentials: true
-}));
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRouter)
