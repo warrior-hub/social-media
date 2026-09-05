@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://social-media-ppvc.onrender.com"
+  baseURL: "https://social-media-duu3.onrender.com"
 });
 
 api.interceptors.request.use((config) => {
